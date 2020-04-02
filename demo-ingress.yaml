@@ -1,16 +1,26 @@
-apiVersion: networking.k8s.io/v1beta1 
+apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: demo-ingress
-  namespace: vote
-  annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
+  name: bookinfo
+  namespace: library
 spec:
   rules:
   - host: demo-kubernetes.info
     http:
       paths:
-      - path: /vote/*
+      - path: /productpage
         backend:
-          serviceName: vote
-          servicePort: 5000
+          serviceName: productpage
+          servicePort: 9080
+      - path: /login
+        backend:
+          serviceName: productpage
+          servicePort: 9080
+      - path: /logout
+        backend:
+          serviceName: productpage
+          servicePort: 9080
+      - path: /static/*
+        backend:
+          serviceName: productpage
+          servicePort: 9080
