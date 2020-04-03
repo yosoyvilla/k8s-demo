@@ -49,7 +49,7 @@ ingress.networking.k8s.io/demo-ingress created
 
 Run the following command to verify the ingress address set:
 ```
-$ kubectl get ingress
+$ kubectl --namespace=vote get ingress
 NAME              HOSTS                  ADDRESS          PORTS     AGE
 demo-ingress      demo-kubernetes.info   <your-address>   80        38s
 ```
@@ -57,6 +57,11 @@ demo-ingress      demo-kubernetes.info   <your-address>   80        38s
 Add the following line to the bottom of the /etc/hosts file.
 ```
 <your-address> demo-kubernetes.info
+```
+
+If you want to delete all your infrastructure (all the previously created) you should run:
+```
+$ kubectl delete namespace vote
 ```
 
 You can visit demo-kubernetes.info from your browser now.
